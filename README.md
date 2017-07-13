@@ -1,6 +1,6 @@
 # Zipcode
 
-Wrapper of http://federalgovernmentzipcodes.us/
+Wrapper of  Google BigQuery's `bigquery-public-data.utility_us.zipcode_area` table
 
 ## License
 

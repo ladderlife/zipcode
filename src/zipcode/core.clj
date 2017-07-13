@@ -3,17 +3,18 @@
             [clojure.edn :as edn]
             [clojure.string :as string]))
 
-(def zipcode-db
-  ;; source is Google BigQuery `bigquery-public-data.utility_us.zipcode_area`
-  (->> (edn/read-string (slurp (io/resource "zipcode-google-bigquery-database-20170713.edn")))
-       (mapv (fn [{:keys [zipcode state_code]}]
-               [(remove-preceeding-zeros zipcode)
-                (set (string/split state_code #", "))]))
-       (into {})))
-
 (defn remove-preceeding-zeros
   [zipcode]
   (re-find #"[^0][0-9]*" (str zipcode)))
+
+(def zipcode-db
+  ;; source is Google BigQuery `bigquery-public-data.utility_us.zipcode_area`
+  ;; SELECT zipcode, state_code FROM `bigquery-public-data.utility_us.zipcode_area`
+  (->> (edn/read-string (slurp (io/resource "zipcode-google-bigquery-database-20170713.edn")))
+       (mapv (fn [{:keys [zipcode state_code]}]
+               [(remove-preceeding-zeros zipcode)
+                (->> (string/split state_code #", ") (map string/trim) set)]))
+       (into {})))
 
 (defn zipcode->states [zipcode]
   "returns a set of all states this zipcode is in"

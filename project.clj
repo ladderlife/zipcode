@@ -1,4 +1,4 @@
-(defproject zipcode "0.1.2"
+(defproject zipcode "0.1.3"
   :description "Converts Zipcode to State (US only)"
   :url "https://github.com/ladderlife/zipcode"
   :license {:name "The MIT License (MIT)"

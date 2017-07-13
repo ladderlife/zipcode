@@ -2,6 +2,10 @@
   (:require [clojure.test :refer :all]
             [zipcode.core :refer :all]))
 
+(deftest number-of-zipcodes
+  (testing "we have more zipcodes in the db than the 3  we are testing"
+    (is (= 33144 (count zipcode-db)))))
+
 (deftest zipcode->states-test
   (testing "accepts int and string as an input, removes preceeding zeros"
     (is (= #{"CA"} (zipcode->states 94061)))

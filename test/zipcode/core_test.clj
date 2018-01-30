@@ -25,3 +25,7 @@
            (zipcode->state "0601")
            (zipcode->state "601")
            (zipcode->state 601)))))
+
+(deftest recently-added-zipcodes
+  (testing "correctly handles newly created zipcodes"
+    (is (= "OR" (zipcode->state 97078)))))

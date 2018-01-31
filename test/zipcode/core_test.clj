@@ -4,7 +4,7 @@
 
 (deftest number-of-zipcodes
   (testing "we have more zipcodes in the db than the 3  we are testing"
-    (is (= 33144 (count zipcode-db)))))
+    (is (= 33154 (count zipcode-db)))))
 
 (deftest zipcode->states-test
   (testing "accepts int and string as an input, removes preceeding zeros"
@@ -25,3 +25,7 @@
            (zipcode->state "0601")
            (zipcode->state "601")
            (zipcode->state 601)))))
+
+(deftest recently-added-zipcodes
+  (testing "correctly handles newly created zipcodes"
+    (is (= "OR" (zipcode->state 97078)))))

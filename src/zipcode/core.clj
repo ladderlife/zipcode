@@ -29,6 +29,8 @@
         (pr db)))))
 
 (comment
+  ;; data source is the irs public data website
+  ;; https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-zip-code-data-soi
   (process-irs-data (io/resource "15zpallnoagi.csv") (io/resource "irs-soi-2015.edn")))
 
 (def zipcode-irs-db

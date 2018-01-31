@@ -17,9 +17,11 @@
                 (map (fn [line]
                        (as-> line $
                          (string/split $ #",")
-                         (do [(remove-preceeding-zeros (nth $ 2))
-                              #{(nth $ 1)}]))))
+                         (do [(remove-preceeding-zeros (nth $ 2)) (nth $ 1)]))))
                 (remove (comp #(contains? #{nil "99999"} %) first)) ; dummy values for missing/"other" zipcodes
+                (group-by first)
+                (map (fn [[k v]]
+                       [k (->> v (map second) (set))]))
                 (into {}))]
     (with-open [w (clojure.java.io/writer out)]
       (binding [*out* w

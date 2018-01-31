@@ -1,6 +1,6 @@
 # Zipcode
 
-Wrapper of  Google BigQuery's `bigquery-public-data.utility_us.zipcode_area` table
+Wrapper of Google BigQuery's `bigquery-public-data.utility_us.zipcode_area` table and the United States IRS Individual Income Tax ZIP Code Data.
 
 ## License
 
